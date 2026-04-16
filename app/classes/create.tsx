@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Picker } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
 import { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useSchoolStore } from "../../src/store/useSchoolStore";
@@ -9,7 +9,7 @@ export default function CreateClass() {
   const { addClass } = useSchoolStore();
 
   const [nome, setNome] = useState("");
-  const [turno, setTurno] = useState("Manhã");
+  const [turno, setTurno] = useState("");
   const [anoLetivo, setAnoLetivo] = useState("");
 
   const handleCreate = async () => {
@@ -29,15 +29,12 @@ export default function CreateClass() {
         onChangeText={setNome}
       />
 
-      <Picker
-        selectedValue={turno}
-        onValueChange={setTurno}
-        style={{ marginBottom: 16 }}
-      >
-        <Picker.Item label="Manhã" value="Manhã" />
-        <Picker.Item label="Tarde" value="Tarde" />
-        <Picker.Item label="Noite" value="Noite" />
-      </Picker>
+      <TextInput
+        style={{ borderWidth: 1, padding: 8, marginBottom: 16 }}
+        placeholder="Turno (manhã, tarde, noite)"
+        value={turno}
+        onChangeText={setTurno}
+      />
 
       <TextInput
         style={{ borderWidth: 1, padding: 8, marginBottom: 16 }}
